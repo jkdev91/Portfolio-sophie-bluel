@@ -1,5 +1,7 @@
+
 // variable globale
 const gallery = document.querySelector('.gallery')
+const filter = document.querySelector('.filtre')
 
 
 // Récupérer les travaux de sophie dans le back-end
@@ -13,8 +15,8 @@ async function getWork () {
 }
 
 // Afficher les travaux sur le front-end
-async function afficherWork() {
-    arrayWork = await getWork()
+async function displayWork() {
+    const arrayWork = await getWork()
 
     for (let i = 0; i < arrayWork.length; i++) {
         // creer element DOM
@@ -32,4 +34,31 @@ async function afficherWork() {
 
     }
 }
-afficherWork()
+displayWork()
+
+// filtrer travaux par catégorie
+async function displayFiltreBtn() {
+    const allBtn = document.createElement('button');
+    allBtn.classList.add("btn")
+    allBtn.innerText = "Tous"
+
+    filter.appendChild(allBtn);
+
+    
+    // recuperer les categories
+    const arrayWork =  await getWork();
+    console.log(arrayWork)
+    const arrayCategorie = new Set(arrayWork.map(object => object.category.name));
+    console.log(arrayCategorie);
+    
+
+    
+
+
+}
+displayFiltreBtn()
+
+// creer les éléments DOM pour les buttons
+
+//rattaché les éléments crée au DOM
+   

@@ -186,3 +186,23 @@ footer nav ul {
 	margin: 2em
 }
 
+/* style des boutons de section filtre */
+.filtre {
+	display: flex;
+	gap: 10px;
+	margin: 30px;
+	justify-content: center;
+}
+
+.btn {
+	font-family: 'syne';
+	font-size: 16px;
+	font-weight: 100;
+	padding: 0.5em 1em;
+	border-radius: 20px;
+	border: 2px solid #1D6154;
+	background-color: white;
+	color: #1D6154;
+	cursor: pointer;
+
+}
