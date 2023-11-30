@@ -14,6 +14,19 @@ async function getWork () {
     }
 }
 
+async function getcat() {
+    try {
+        const request2 = await fetch('http://localhost:5678/api/categories');
+         return await request2.json();
+    } catch (erreur) {
+        console.log('il y a eu une erreur')
+    }
+}
+
+
+
+
+
 // Afficher les travaux sur le front-end
 async function displayWork() {
     const arrayWork = await getWork()
@@ -31,34 +44,55 @@ async function displayWork() {
         gallery.appendChild(figure);
         figure.appendChild(img);
         figure.appendChild(figcaption);
-
     }
 }
 displayWork()
 
+
 // filtrer travaux par catégorie
+
+// creer les btn de filtre dans le DOM
 async function displayFiltreBtn() {
+    // creer le boutton 'Tous' 
     const allBtn = document.createElement('button');
     allBtn.classList.add("btn")
+    allBtn.setAttribute("type", 'button')
     allBtn.innerText = "Tous"
 
     filter.appendChild(allBtn);
-
     
     // recuperer les categories
     const arrayWork =  await getWork();
     console.log(arrayWork)
-    const arrayCategorie = new Set(arrayWork.map(object => object.category.name));
-    console.log(arrayCategorie);
-    
+    const setCategorie = new Set(arrayWork.map(object => object.category.name));
+    console.log(setCategorie);
 
-    
+
+    /*
+    for (let category of setCategorie) {
+        const catBtn = document.createElement('button');
+        catBtn.classList.add("btn")
+        catBtn.innerText = "test"
+        filter.appendChild(catBtn);
+    }*/
+
+// creer les éléments DOM pour les buttons en passant par fetch 
+    const arrayCat = await getcat();
+    console.log(arrayCat)
+
+    for (let i = 0; i < arrayCat.length; i++) {
+        const catBtn = document.createElement('button');
+        catBtn.classList.add("btn")
+        catBtn.setAttribute("type", 'button')
+        catBtn.innerText = arrayCat[i].name;
+        filter.appendChild(catBtn);
+    }
 
 
 }
 displayFiltreBtn()
 
-// creer les éléments DOM pour les buttons
 
-//rattaché les éléments crée au DOM
+
+// creer event listner sur les boutons pour faire le filtre 
    
