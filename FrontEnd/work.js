@@ -1,7 +1,9 @@
 
 // variable globale
 const gallery = document.querySelector('.gallery')
+console.log(gallery)
 const filter = document.querySelector('.filtre')
+
 
 
 // Récupérer les travaux de sophie dans le back-end
@@ -87,12 +89,26 @@ async function displayFiltreBtn() {
         catBtn.innerText = arrayCat[i].name;
         filter.appendChild(catBtn);
     }
-
-
 }
 displayFiltreBtn()
 
 
 
 // creer event listner sur les boutons pour faire le filtre 
-   
+
+const buttonFilter = document.querySelectorAll("button");
+console.log(buttonFilter.length)
+
+
+
+// function filter() {
+
+//     buttonFilter.addEventListener('click', function() {
+
+
+
+//     }) 
+
+
+// }
+// filter()

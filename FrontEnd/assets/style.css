@@ -15,7 +15,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, a {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -137,34 +137,41 @@ li:hover {
 	width: 100%;
 
 }
-#contact {
+#contact, 
+#login {
 	width: 50%;
 margin: auto;
 }
-#contact > * {
+#contact > *,
+#login > * {
 	text-align: center;
 
 }
-#contact h2{
+#contact h2,
+#login h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#contact form,
+#login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact input,
+#login input   {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#contact label,
+#login label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea {
+#contact textarea,
+#login textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -180,11 +187,21 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+#login a {
+	text-align: center;
+	color: black;
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
 }
+
+
+.footermargin {
+	margin-top: 50vh;
+} 
 
 /* style des boutons de section filtre */
 .filtre {
