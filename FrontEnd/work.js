@@ -1,12 +1,12 @@
 
 // variable globale
 const gallery = document.querySelector('.gallery')
-console.log(gallery)
+
 const filter = document.querySelector('.filtre')
 
 
 
-// Récupérer les travaux de sophie dans le back-end
+/****Récupérer les travaux de sophie dans le back-end****/
 async function getWork () {
     try {
         const request = await fetch('http://localhost:5678/api/works');
@@ -27,20 +27,23 @@ async function getcat() {
 
 
 
-
-
-// Afficher les travaux sur le front-end
+/****Afficher les travaux sur le front-end****/
 async function displayWork() {
     const arrayWork = await getWork()
+    createWork(arrayWork)
+    
+}
+displayWork()
 
-    for (let i = 0; i < arrayWork.length; i++) {
+function createWork(work) {
+    for (let i = 0; i < work.length; i++) {
         // creer element DOM
         const figure = document.createElement("figure");
         const img = document.createElement("img");
-        img.src = arrayWork[i].imageUrl;
-        img.alt = arrayWork[i].title;
+        img.src = work[i].imageUrl;
+        img.alt = work[i].title;
         const figcaption = document.createElement("figcaption");
-        figcaption.innerText = arrayWork[i].title;
+        figcaption.innerText = work[i].title;
 
         // rattacher element au DOM
         gallery.appendChild(figure);
@@ -48,44 +51,28 @@ async function displayWork() {
         figure.appendChild(figcaption);
     }
 }
-displayWork()
 
 
-// filtrer travaux par catégorie
+/****filtrer travaux par catégorie****/
 
-// creer les btn de filtre dans le DOM
+// creer le boutton 'Tous' 
+const allBtn = document.createElement('button');
+allBtn.classList.add("btn")
+allBtn.id = 0;
+allBtn.setAttribute("type", 'button')
+allBtn.innerText = "Tous"
+filter.appendChild(allBtn);
+
+
+// creer les boutons de catégorie 
 async function displayFiltreBtn() {
-    // creer le boutton 'Tous' 
-    const allBtn = document.createElement('button');
-    allBtn.classList.add("btn")
-    allBtn.setAttribute("type", 'button')
-    allBtn.innerText = "Tous"
-
-    filter.appendChild(allBtn);
-    
-    // recuperer les categories
-    const arrayWork =  await getWork();
-    console.log(arrayWork)
-    const setCategorie = new Set(arrayWork.map(object => object.category.name));
-    console.log(setCategorie);
-
-
-    /*
-    for (let category of setCategorie) {
-        const catBtn = document.createElement('button');
-        catBtn.classList.add("btn")
-        catBtn.innerText = "test"
-        filter.appendChild(catBtn);
-    }*/
-
-// creer les éléments DOM pour les buttons en passant par fetch 
     const arrayCat = await getcat();
-    console.log(arrayCat)
 
     for (let i = 0; i < arrayCat.length; i++) {
         const catBtn = document.createElement('button');
-        catBtn.classList.add("btn")
-        catBtn.setAttribute("type", 'button')
+        catBtn.classList.add('btn');
+        catBtn.id = arrayCat[i].id
+        catBtn.setAttribute("type", 'button');
         catBtn.innerText = arrayCat[i].name;
         filter.appendChild(catBtn);
     }
@@ -94,21 +81,32 @@ displayFiltreBtn()
 
 
 
-// creer event listner sur les boutons pour faire le filtre 
+// Filtrer et Afficher les travaux par catégories
+async function filterCategory() {
+    const arrayWork = await getWork()
+    const buttons = document.querySelectorAll(".filtre button")
 
-const buttonFilter = document.querySelectorAll("button");
-console.log(buttonFilter.length)
+    for (let i = 0; i < buttons.length; i++) {
+        
+        buttons[i].addEventListener("click", async function (ev) {
+            btnId = ev.target.id;
+            gallery.innerHTML = "";
+
+            if (btnId !== "0") { 
+                const unit = arrayWork.filter( function (obj) {
+                    return obj.categoryId == btnId;  
+                });
+                unit.forEach((obj) => {
+                    createWork([obj]);                
+                });
+            } else {
+                displayWork()
+            }
+        })   
+    }      
+}   
+filterCategory()
 
 
 
-// function filter() {
 
-//     buttonFilter.addEventListener('click', function() {
-
-
-
-//     }) 
-
-
-// }
-// filter()
