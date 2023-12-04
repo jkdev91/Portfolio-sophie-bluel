@@ -199,8 +199,10 @@ footer nav ul {
 }
 
 
-.footermargin {
-	margin-top: 50vh;
+.footerlogin {
+	position: fixed;
+	bottom: 0;
+	right: 0;
 } 
 
 /* style des boutons de section filtre */
