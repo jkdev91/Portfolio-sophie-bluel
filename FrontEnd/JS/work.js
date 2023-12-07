@@ -113,7 +113,22 @@ filterCategory()
 //-----------------------------------------------//
 
 // si token est stocke (verification) alors
-// modifier le login en logout 
+const checkToken = localStorage.getItem("token")
+if (checkToken) {
+    // modifier le login en logout 
+    const navLog = document.querySelector('#js-log')
+    navLog.innerText ="logout"
+   /* // ajouter une enttete mode edition en haut de page
+    const body = document.querySelector('body')
+    console.log(body)
+    const div = document.createElement('div')
+    body.insertBefore(div, body.firstChild)
+    div.classList.add('modedit')
+    const divP = document.createElement('p')
+    div.appendChild(divP)
+    divP.innerText = "mode Edit"*/
+}
+
 // ajouter une enttete mode edition en haut de page
 // ajouter un lien "modifier" a droite du titre projet
 // effacer les boutons de filtre
