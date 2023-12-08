@@ -118,20 +118,32 @@ if (checkToken) {
     // modifier le login en logout 
     const navLog = document.querySelector('#js-log')
     navLog.innerText ="logout"
-   /* // ajouter une enttete mode edition en haut de page
+    // ajouter une enttete mode edition en haut de page
     const body = document.querySelector('body')
-    console.log(body)
     const div = document.createElement('div')
     body.insertBefore(div, body.firstChild)
-    div.classList.add('modedit')
-    const divP = document.createElement('p')
-    div.appendChild(divP)
-    divP.innerText = "mode Edit"*/
+    div.innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>Mode Edition<p>';
+    div.classList.add('header-edit')
+
+    // ajouter un lien "modifier" a droite du titre projet
+    const porfolio = document.querySelector('#portfolio div')
+    porfolio.classList.add('edit')
+    const porfolioH2 = document.querySelector('#portfolio h2')
+    const divBis = document.createElement('div')
+    porfolioH2.insertAdjacentElement("afterend", divBis)
+    divBis.classList.add('edit')
+    divBis.innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>Modifier<p> ';
+
+    // cacher les boutons de filtre
+    filter.classList.add("hide")
+
 }
 
-// ajouter une enttete mode edition en haut de page
-// ajouter un lien "modifier" a droite du titre projet
-// effacer les boutons de filtre
 
+
+
+//-----------------------------------//
+// gestion de la page lors du logout
+//-----------------------------------//
 
 
