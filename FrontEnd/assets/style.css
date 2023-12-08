@@ -15,7 +15,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video, a {
+time, mark, audio, video, a, btn {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -47,7 +47,14 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
-body {
+
+body{
+	display: flex;
+	flex-direction: column;
+
+}
+
+.container {
 	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
@@ -140,7 +147,7 @@ li:hover {
 #contact, 
 #login {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > *,
 #login > * {
@@ -215,7 +222,7 @@ footer nav ul {
 
 .btn {
 	font-family: 'syne';
-	font-size: 16px;
+	font-size: 1rem;
 	font-weight: 100;
 	padding: 0.5em 1em;
 	border-radius: 20px;
@@ -230,3 +237,59 @@ footer nav ul {
 	color: white;
 	background-color: #1D6154;
 }
+
+#email,
+#password {
+	padding-left: 10px;
+}
+
+a {
+	text-decoration: none;
+}
+
+/*style validation message error login*/
+
+.errorMessage {
+	color: red;
+}
+
+/* style quand le login est actif*/
+
+.header-edit {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	/* max-width: 1440; */
+	height: 59px;
+	background-color: #000000;
+	text-align: center;
+	color: white;
+	font-size: 16px;
+}
+
+
+.edit {
+	display: flex;
+	justify-content: center;
+	font-family: 'syne';
+	
+}
+
+.btn-edit {
+	display: flex;
+	justify-content: center;
+	height: 20px;
+	gap: 10px;
+	border: none;
+	background: none;
+
+}
+
+.hide {
+	display: none;
+}
+
+
+
+
