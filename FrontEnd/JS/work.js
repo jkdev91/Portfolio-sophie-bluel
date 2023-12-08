@@ -129,9 +129,9 @@ if (checkToken) {
     const porfolio = document.querySelector('#portfolio div')
     porfolio.classList.add('edit')
     const porfolioH2 = document.querySelector('#portfolio h2')
-    const divBis = document.createElement('div')
+    const divBis = document.createElement('button')
     porfolioH2.insertAdjacentElement("afterend", divBis)
-    divBis.classList.add('edit')
+    divBis.classList.add('btn-edit')
     divBis.innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>Modifier<p> ';
 
     // cacher les boutons de filtre
