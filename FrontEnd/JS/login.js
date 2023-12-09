@@ -15,6 +15,7 @@ const form = document.querySelector('form')
         window.location.href = "../index.html"
     }
 }
+checkingLocalStorage()
 
 
 // recuperer les email + password entrer par le user
@@ -60,8 +61,8 @@ function requestToken () {
 requestToken ()
 
 
+// validation de l'email entrer par le user
 
-// qd on logout effacer le localstorage
 
 
 

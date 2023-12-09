@@ -118,7 +118,8 @@ if (checkToken) {
     // modifier le login en logout 
     const navLog = document.querySelector('#js-log')
     navLog.innerText ="logout"
-    // ajouter une enttete mode edition en haut de page
+    navLog.setAttribute("href", "index.html")
+    // ajouter une entete mode edition en haut de page
     const body = document.querySelector('body')
     const div = document.createElement('div')
     body.insertBefore(div, body.firstChild)
@@ -140,10 +141,23 @@ if (checkToken) {
 }
 
 
-
+    
 
 //-----------------------------------//
 // gestion de la page lors du logout
 //-----------------------------------//
 
+const navLog = document.querySelector('#js-log')
+console.log(navLog)
+navLog.addEventListener('click', function() {
+    window.localStorage.removeItem("id");
+    window.localStorage.removeItem("token");
+    
+    
+})
 
+
+    // si token remove on redirige vers la page accueille 
+    // if (!checkToken) {
+    //     window.location.href = "../index.html"
+    // } 
