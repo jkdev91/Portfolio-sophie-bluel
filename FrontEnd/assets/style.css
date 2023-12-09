@@ -222,7 +222,7 @@ footer nav ul {
 
 .btn {
 	font-family: 'syne';
-	font-size: 1rem;
+	font-size: 1.2em;
 	font-weight: 100;
 	padding: 0.5em 1em;
 	border-radius: 20px;
@@ -290,6 +290,8 @@ a {
 	display: none;
 }
 
-
+.margin {
+	margin: 0 20%;
+}
 
 
