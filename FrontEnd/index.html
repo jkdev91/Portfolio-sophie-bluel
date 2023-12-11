@@ -13,7 +13,44 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-<div class="container">	
+<div class="container">
+	<div class="modal-overlay hide"></div>	
+	<aside id="modal1" class="modal hide" aria-hidden="true" role="dialog">
+		<div class="modal-header">
+			<i class="fa-solid fa-arrow-left return hide"></i>
+			<i class="fa-solid fa-xmark close"></i>				
+		</div>
+		<div class="modal-body">
+			<h1 class ="modal-title">Galerie de photo</h1>
+			<div class="modal-gallery">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="modal-btn">Ajouter photo</button>
+		</div>
+	</aside>
+
+	<aside id="modal2" class="modal hide" aria-hidden="true" role="dialog">
+		<div class="modal-header2">
+			<i class="fa-solid fa-arrow-left return"></i>
+			<i class="fa-solid fa-xmark close"></i>				
+		</div>
+		<div class="modal-body">
+			<h1 class ="modal-title">Ajout photo</h1>
+			<form action="#" method="post">
+				<label for="title">title</label>
+				<input type="text" name="title" id="title">
+				<label for="categorie">Catégorie</label>
+				<input type="text" name="categorie" id="categorie">
+			
+			</form>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" class="modal2-btn" value="Valider">
+			<!-- <button class="modal2-btn">Valider</button> -->
+		</div>
+	</aside>
+
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>

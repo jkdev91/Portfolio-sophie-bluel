@@ -30,9 +30,12 @@ async function getcat() {
 async function displayWork() {
     const arrayWork = await getWork()
     createWork(arrayWork)
+    createModalWork(arrayWork)
+
     
 }
 displayWork()
+
 
 function createWork(work) {
     for (let i = 0; i < work.length; i++) {
@@ -157,7 +160,71 @@ navLog.addEventListener('click', function() {
 })
 
 
-    // si token remove on redirige vers la page accueille 
-    // if (!checkToken) {
-    //     window.location.href = "../index.html"
-    // } 
+//-----------------------------------//
+// gestion de la boite modal
+//-----------------------------------//
+
+const modalGallery = document.querySelector('.modal-gallery');
+// console.log(modalGallery);
+const btnEdit = document.querySelector('.btn-edit');
+const overlay = document.querySelector('.modal-overlay')
+const modal1 = document.getElementById('modal1')
+const modal2 = document.getElementById('modal2')
+const close = document.querySelector('.close')
+
+
+
+function createModalWork(work) {
+    for (let i = 0; i < work.length; i++) {
+        // creer element DOM
+        const figure = document.createElement("figure");
+        const img = document.createElement("img");
+        img.src = work[i].imageUrl;
+
+        // rattacher element au DOM
+        modalGallery.appendChild(figure);
+        figure.appendChild(img);
+    }
+}
+
+
+
+// gerer l'ouverture du modal
+function openModal() {
+    btnEdit.addEventListener('click', function() {
+        overlay.classList.remove('hide')
+        modal1.classList.remove('hide')
+    })
+}
+openModal()
+
+
+
+// gerer la fermeture du modal
+function closeModal() {
+    close.addEventListener('click', function(){
+        overlay.classList.add('hide')
+        modal1.classList.add('hide')
+    
+    }) 
+
+}
+closeModal()
+
+
+// gerer icone de suppression
+const modalFigure = modalGallery.children
+console.log(modalFigure)
+const it = document.querySelectorAll('.modal-gallery figure')
+console.log(it)
+
+
+
+// modale ajouter
+// aller vers la modale ajouter
+const modaleBtnAdd = document.querySelector('.modal-btn');
+console.log(modaleBtnAdd)
+modaleBtnAdd.addEventListener('click', function(){
+    modal1.classList.add('hide')
+    modal2.classList.remove('hide')
+}) 
