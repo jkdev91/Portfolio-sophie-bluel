@@ -2,7 +2,7 @@
 /*** page login***/
 
 const email = document.getElementById("email")
-console.log(email)
+console.log(email.value)
 const password = document.getElementById('password')
 console.log(password)
 const form = document.querySelector('form')
@@ -41,7 +41,11 @@ function requestToken () {
         // recuperer la réponse (l'id + token) de l'api 
         .then((response) => {
             if (!response.ok) {
-                return alert("le mot de passe ou l'email est incorrect")
+                const loginP = document.querySelector('#login p')
+                loginP.innerText = "erreur d'identifiants, vérifier l'email et le mot de passe saisies"
+                loginP.classList.add('errorMessage')
+
+                // return alert("le mot de passe ou l'email est incorrect")
 
             } else {
                return data = response.json()
@@ -62,7 +66,20 @@ requestToken ()
 
 
 // validation de l'email entrer par le user
+function verifierEmail (balise) {
+    let emailRegExp = new RegExp ("[a-z0-9._-]+ @[a-z0-9._-]+ \.[a-z0-9._-]+")
+    let result = emailRegExp.test(balise.value)
+    if (result == false) {
+        balise.classList.add("errorMessage")
 
+    } else {
+        balise.classList.remove("errorMessage")
+    };
+};
+
+email.addEventListener("change", () => {
+    verifierEmail(email)
+})
 
 
 
