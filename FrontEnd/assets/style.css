@@ -160,7 +160,7 @@ li:hover {
 }
 #contact form,
 #login form,
-#modal2 form {
+#modal form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
@@ -169,7 +169,7 @@ li:hover {
 
 #contact input,
 #login input,
-#modal2 input   {
+#modal input   {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
@@ -181,7 +181,7 @@ li:hover {
 }
 #contact textarea,
 #login textarea,
-#modal2 input {
+#modal input {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -272,7 +272,8 @@ a {
 	font-size: 16px;
 }
 
-.close, .return {
+.fa-xmark,
+.return {
 	cursor: pointer;
 }
 
@@ -341,13 +342,11 @@ a {
 .modal-header {
 	display: flex;
 	justify-content: flex-end;
-	padding: 15px 15px 0 0 ;
+	padding: 15px 20px 20px;
 }
 
-.modal-header2 {
-	display: flex;
+.flex {
 	justify-content: space-between;
-	padding: 15px 15px 0 0 ;
 }
 
 
@@ -397,19 +396,25 @@ a {
 	width: 237px;
 	height: 36px;
 	border-radius: 60px;
-	background-color: rgba(29, 97, 84, 1);
 	color: #fff;
 	border: none;
 	cursor: pointer;
+	font-family: 'syne';
+	font-size: 14px;
   }
 
-  .modal2-btn {
-	width: 237px;
-	height: 36px;
-	border-radius: 60px;
-	background-color: rgba(167, 167, 167, 1);
-	color: #fff;
-	border: none;
-	cursor: pointer;
+  .green{
+	background-color: rgba(29, 97, 84, 1);
+  }
 
+  .grey {
+	background-color: rgba(167, 167, 167, 1);
+  }
+
+  #modal form {
+	padding: 30px;
+  }
+
+  #modal input{
+	gap:20px;
   }
