@@ -250,22 +250,40 @@ function createModal2 (){
     form.setAttribute('action', '#');
     form.setAttribute('method', 'post');
 
+    // Créer un élément div pour le champ image
+    const imageDivBox = document.createElement('div');
+    imageDivBox.classList.add('uploadBox')
+    
+    // Créer un élément div pour l'icon du champ image
+    const divBoxIcon = document.createElement('div');
+    divBoxIcon.classList.add('uploadBox__icon')
+
+
+    // Créer un élément icon pour le champ image
+    const imageIcon = document.createElement('i');
+    imageIcon.classList.add('fa-solid')
+    imageIcon.classList.add('fa-mountain-sun')
+    imageIcon.classList.add('fa-flip-horizontal')
+
     // Créer un élément label pour le champ image
     const imageLabel = document.createElement('label');
-    imageLabel.setAttribute('for', 'image');
-    imageLabel.textContent = 'Image';
+    imageLabel.setAttribute('for', 'title');
+    imageLabel.textContent = 'ajouter une photo';
 
     // Créer un élément input pour le champ image
     const imageInput = document.createElement('input');
     imageInput.setAttribute('type', 'file');
-    imageInput.setAttribute('name', 'image');
-    imageInput.setAttribute('id', 'image'); 
+    imageInput.setAttribute('name', 'file');
+    imageInput.setAttribute('id', 'file');
 
+    // Créer un élément p pour le champ image
+    const imageP = document.createElement('p');
+    imageP.textContent = 'jpg, png : 4mo max';
 
     // Créer un élément label pour le champ title
     const titleLabel = document.createElement('label');
     titleLabel.setAttribute('for', 'title');
-    titleLabel.textContent = 'title';
+    titleLabel.textContent = 'Titre';
 
     // Créer un élément input pour le champ title
     const titleInput = document.createElement('input');
@@ -275,19 +293,23 @@ function createModal2 (){
 
 
     // Créer un élément label pour le champ categorie
-    var categorieLabel = document.createElement('label');
+    const categorieLabel = document.createElement('label');
     categorieLabel.setAttribute('for', 'categorie');
     categorieLabel.textContent = 'Catégorie';
 
     // Créer un élément input pour le champ categorie
-    var categorieInput = document.createElement('input');
+    const categorieInput = document.createElement('input');
     categorieInput.setAttribute('type', 'text');
     categorieInput.setAttribute('name', 'categorie');
     categorieInput.setAttribute('id', 'categorie');
 
     // Ajouter les éléments créés au formulaire
-    form.appendChild(imageLabel);
-    form.appendChild(imageInput);
+    form.appendChild(imageDivBox);
+    imageDivBox.appendChild(divBoxIcon)
+    imageDivBox.appendChild(imageLabel)
+    imageDivBox.appendChild(imageInput)
+    imageDivBox.appendChild(imageP)
+    divBoxIcon.appendChild(imageIcon);
     form.appendChild(titleLabel);
     form.appendChild(titleInput);
     form.appendChild(categorieLabel);
