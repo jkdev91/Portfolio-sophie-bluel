@@ -399,7 +399,7 @@ a {
 	border: none;
 	cursor: pointer;
 	font-family: 'syne';
-	font-size: 14px;
+	font-size: 16px;
   }
 
   .green{
@@ -468,9 +468,27 @@ a {
 	padding: 9.5px, 3.93px, 6.88px, 3.93px;
 	color: rgba(203, 214, 220, 1);
 	font-size: 420%;
-
   }
 
-  #file {
-	display: none;
+
+  #modal figure {
+	position: relative;
+
+  } 
+
+  .btnSupression{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+	top: 5px;
+	right: 5px;
+	background: black;
+	position: absolute;
+  }
+
+  .fa-trash-can {
+	color: white;
+	cursor: pointer;
   }
