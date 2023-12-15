@@ -1,3 +1,4 @@
+"use strict"
 
 // variable globale DOM
 const gallery = document.querySelector('.gallery')
@@ -150,7 +151,7 @@ if (checkToken) {
 //-----------------------------------//
 
 const navLog = document.querySelector('#js-log')
-console.log(navLog)
+
 navLog.addEventListener('click', function() {
     window.localStorage.removeItem("id");
     window.localStorage.removeItem("token");
@@ -177,14 +178,24 @@ const precedent = document.querySelector(".return")
 
 function createModalWork(work) {
     for (let i = 0; i < work.length; i++) {
-        // creer element DOM
+        // creer element DOM des photos
         const figure = document.createElement("figure");
         const img = document.createElement("img");
         img.src = work[i].imageUrl;
 
+        // creer les bouttons de suppression
+        const btnSuppresion = document.createElement('div');
+        btnSuppresion.classList.add('btnSupression')
+        const iconSuppression = document.createElement('i')
+        iconSuppression.classList.add("fa-solid")
+        iconSuppression.classList.add("fa-trash-can")
+        
+
         // rattacher element au DOM
         modalGallery.appendChild(figure);
         figure.appendChild(img);
+        figure.appendChild(btnSuppresion);
+        btnSuppresion.appendChild(iconSuppression);
     }
 }
 
@@ -220,12 +231,10 @@ closeModal()
 
 
 // gerer icone de suppression
-const modalFigure = modalGallery.children
-console.log(modalFigure)
-const test = Array.from(modalFigure)
-console.log(test)
-const it = document.querySelectorAll('.modal-gallery figure')
-console.log(it)
+
+
+
+
 
 
 
@@ -237,6 +246,7 @@ function deleteModalGallery (){
     modalBody.removeChild(seconchild)
 
 }
+
 
 function createModal2 (){
     precedent.classList.remove('hide');
@@ -267,14 +277,17 @@ function createModal2 (){
 
     // Créer un élément label pour le champ image
     const imageLabel = document.createElement('label');
-    imageLabel.setAttribute('for', 'title');
+    imageLabel.setAttribute('for', 'upload_file');
     imageLabel.textContent = 'ajouter une photo';
 
     // Créer un élément input pour le champ image
     const imageInput = document.createElement('input');
     imageInput.setAttribute('type', 'file');
-    imageInput.setAttribute('name', 'file');
-    imageInput.setAttribute('id', 'file');
+    imageInput.setAttribute('id', 'upload_file');
+    imageInput.setAttribute('accept', 'image/jpeg, image/png, image/gif');
+    imageInput.setAttribute('hidden', true);
+
+    imageInput.addEventListener("change", previewImage)
 
     // Créer un élément p pour le champ image
     const imageP = document.createElement('p');
@@ -323,6 +336,8 @@ function createModal2 (){
     modaleBtnAdd.classList.remove('green')
     modaleBtnAdd.classList.add('grey')
     modaleBtnAdd.innerText = "Valider"
+
+    
     
     
 }
@@ -338,12 +353,37 @@ displayModal2()
 
 
 
+
+// recuperer le chemin de la source d'image uploader
+function previewImage(event) {
+
+    const fileExtesionRegex = /\.(jpe?g|png|gif)$/gmi
+
+    if(event.target.files.length == 0 | !fileExtesionRegex.test(event.target.files[0].name) | event.target.files.length >= 4000000 ) {
+        return
+    }
+    console.log(event.target.files);
+    console.log(event.target.files[0].name);   
+
+    const file = event.target.files[0];
+
+    const fileReader = new FileReader();
+
+    fileReader.addEventListener('load', (event) => displayImg ())
+}
+    
+
+
+
+
+
+
+
 //retourner vers la modale gallerie de photo
 
 function modalReturn () {
     precedent.addEventListener('click', function(){
-        modal.classList.remove('hide')
-        modal.classList.add('hide')
+        
     })
 
 }
