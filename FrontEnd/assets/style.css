@@ -168,7 +168,8 @@ li:hover {
 
 #contact input,
 #login input,
-#modal input   {
+#modal input,
+#modal select   {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
@@ -180,7 +181,8 @@ li:hover {
 }
 #contact textarea,
 #login textarea,
-#modal input {
+#modal input,
+#modal select {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -413,7 +415,7 @@ a {
   #modal form {
 	display: flex;
 	flex-direction: column;
-	/* padding: 50px; */
+	padding-bottom: 30px;
 	margin: 30px;
 	border-bottom: solid 1px rgba(179, 179, 179, 1);
   }
@@ -491,4 +493,10 @@ a {
   .fa-trash-can {
 	color: white;
 	cursor: pointer;
+  }
+
+  #modal .uploadBox img {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
   }
