@@ -69,6 +69,7 @@ requestToken ()
 function verifierEmail (balise) {
     let emailRegExp = new RegExp ("[a-z0-9._-]+ @[a-z0-9._-]+ \.[a-z0-9._-]+")
     let result = emailRegExp.test(balise.value)
+    console.log(result)
     if (result == false) {
         balise.classList.add("errorMessage")
 

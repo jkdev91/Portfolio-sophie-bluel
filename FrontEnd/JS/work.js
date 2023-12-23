@@ -292,7 +292,7 @@ async function afficherModalGallery(modalGallery1) {
 }
 
 
-// suppression des photo de la modal             // function ne marche pas error 401
+// suppression des photo de la modal          
 function deletePhoto() {
     const trashIcon = document.querySelectorAll('.fa-trash-can')
     trashIcon.forEach(iconSuppression => {
@@ -385,6 +385,7 @@ function createModal2() {
     const imageInput = document.createElement('input');
     imageInput.setAttribute('type', 'file');
     imageInput.setAttribute('id', 'upload_file');
+    imageInput.setAttribute('name','image')
     imageInput.setAttribute('accept', 'image/jpeg, image/png');
     imageInput.setAttribute('hidden', true);
     modalForm.appendChild(imageInput)
@@ -412,7 +413,7 @@ function createModal2() {
 
     // Créer un élément input pour le champ categorie
     const categoryInput = document.createElement('select');
-    categoryInput.setAttribute('type', 'text');
+    // categoryInput.setAttribute('type', 'text');
     categoryInput.setAttribute('name', 'category');
     categoryInput.setAttribute('id', 'category');
     modalForm.appendChild(categoryInput)
@@ -477,7 +478,7 @@ function previewImg(imageInput, imageDivBox, iconDivBox, imageLabel, imageP) {
 function submitPhoto(btnSubmit, imageInput, titleInput, categoryInput) {
     btnSubmit.addEventListener('click', (e) =>{
         e.preventDefault();
-        const fileName = imageInput.files[0].name
+        const fileName = imageInput.files[0]
         console.log(fileName)
 
         const fileTitle = titleInput.value
@@ -495,6 +496,7 @@ function submitPhoto(btnSubmit, imageInput, titleInput, categoryInput) {
             method: "POST",
             headers: {
                 'Authorization': `Bearer ${Token}`
+            
             },
             body: formData,
         };
@@ -502,86 +504,28 @@ function submitPhoto(btnSubmit, imageInput, titleInput, categoryInput) {
         fetch('http://localhost:5678/api/works', charge)
         .then((response)=>{
             if (!response.ok) {
-            console.log("l'ajout de photo n'a pas marché !")
+                throw new Error('Erreur de réseau : ' + response.status + ' ' + response.statusText);
             }
-            return response.json()
-            })
-            .then((data)=>{
-                console.log("l'ajout de photo a reussi voici la data :", data)
+            return response.json();
+        })
+        .then((data)=>{
+            if (data.error){
+                console.error("Erreur :", data.error);
+            } else {
+                console.log("Photo ajoutée avec succès :", data);
                 createModal2()
                 displayWork()
-               
-            })
+            }
+        })
+        .catch((error)=> {
+            console.error('Erreur lors de l’envoi du fichier :',error)
+
+        }); 
+            
     })
 }
 
-
-
-
-
-
-
-
-async function submit(e){
-  e.preventDefault();
-  const imgInput = document.querySelector('.uploadBox img').src
-//   console.log(imgInput)
-
-  const arr = imgInput.split(",")
-//   console.log(arr)
-  const mime = arr[0].match(/:(.*?);/)[1]
-//   console.log("mime:", mime)
-
-  const data = arr[1]
-//   console.log("data:", data)
-
-  const datastring = atob(data)
-  let n = datastring.length
-
-  const dataArray = new Uint8Array(n)
-
-  while(n--) {
-    dataArray[n] = datastring.charCodeAt(n)
-  }
-  
-  const file = new File([dataArray], 'file.png', {type: mime})
-//   console.log(file)
-  const fileName = file.name
-//   console.log(fileName)
-
-  const titleInput = document.querySelector('#title');
-  console.log(titleInput.value)
-
-  // recuperer l'id(index) de la catégorie selectionné
-  const categoryInput = document.getElementById('category');
-  const selectoptionid = categoryInput.options[categoryInput.selectedIndex].id
-  console.log(selectoptionid)
-
-  const formData = new FormData();
-//   formData.append('image', fileName);
-  formData.append('title', titleInput.value);
-  formData.append('category', categoryInput.value);
-
-//   const token = Token;
-//   const headers = new Headers({ 'Authorization': `Bearer ${Token}` });
-  console.log(Token)
-
-    await fetch('http://localhost:5678/api/works', {
-    method: 'POST',
-    headers: { 
-        'Authorization': `Bearer ${Token}`
-    },
-    body: formData
-  })
-  .then(response => {
-    if (response.ok) {
-      console.log('La requête a été envoyée avec succès.');
-    } else {
-      console.error('La requête a échoué.');
-    }
-  })
-  .catch(error => console.error(error));
-};
+// gestion validation du Form submit
 
 
 
