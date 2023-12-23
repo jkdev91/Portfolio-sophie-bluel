@@ -387,6 +387,7 @@ function createModal2() {
     imageInput.setAttribute('id', 'upload_file');
     imageInput.setAttribute('name','image')
     imageInput.setAttribute('accept', 'image/jpeg, image/png');
+    imageInput.required = true;
     imageInput.setAttribute('hidden', true);
     modalForm.appendChild(imageInput)
 
@@ -403,6 +404,7 @@ function createModal2() {
     titleInput.setAttribute('type', 'text');
     titleInput.setAttribute('name', 'title');
     titleInput.setAttribute('id', 'title');
+    titleInput.required = true;
     modalForm.appendChild(titleInput)
 
     // Créer un élément label pour le champ categorie
@@ -416,6 +418,7 @@ function createModal2() {
     // categoryInput.setAttribute('type', 'text');
     categoryInput.setAttribute('name', 'category');
     categoryInput.setAttribute('id', 'category');
+    categoryInput.required = true;
     modalForm.appendChild(categoryInput)
 
     const optionElement = document.createElement('option')
@@ -460,14 +463,20 @@ function previewImg(imageInput, imageDivBox, iconDivBox, imageLabel, imageP) {
     img.classList.add('image_preview')
     imageInput.addEventListener('change', () => {
     const file = imageInput.files[0];
-    // console.log(file)
-    const url = URL.createObjectURL(file);
-    img.src = url;
-    
-    imageDivBox.appendChild(img);
-    iconDivBox.remove();
-    imageLabel.remove();
-    imageP.remove()
+    console.log(file)
+    const filesize = imageInput.files[0].size
+    console.log(filesize)
+    if(filesize < '4000000'){
+        const url = URL.createObjectURL(file);
+        img.src = url;
+        
+        imageDivBox.appendChild(img);
+        iconDivBox.remove();
+        imageLabel.remove();
+        imageP.remove()
+    } else{
+        alert("ATTENTION : la taille de la photo selectionner est > 4Mo")
+    }
 });   
 }
 
@@ -500,32 +509,34 @@ function submitPhoto(btnSubmit, imageInput, titleInput, categoryInput) {
             },
             body: formData,
         };
-
-        fetch('http://localhost:5678/api/works', charge)
-        .then((response)=>{
-            if (!response.ok) {
-                throw new Error('Erreur de réseau : ' + response.status + ' ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then((data)=>{
-            if (data.error){
-                console.error("Erreur :", data.error);
-            } else {
-                console.log("Photo ajoutée avec succès :", data);
-                createModal2()
-                displayWork()
-            }
-        })
-        .catch((error)=> {
-            console.error('Erreur lors de l’envoi du fichier :',error)
-
-        }); 
+        if( !fileName == "" && !fileTitle == "" && !selectoptionid == ""){
+            fetch('http://localhost:5678/api/works', charge)
+            .then((response)=>{
+                if (!response.ok) {
+                    throw new Error('Erreur de réseau : ' + response.status + ' ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then((data)=>{
+                if (data.error){
+                    console.error("Erreur :", data.error);
+                } else {
+                    console.log("Photo ajoutée avec succès :", data);
+                    createModal2()
+                    displayWork()
+                }
+            })
+            .catch((error)=> {
+                console.error('Erreur lors de l’envoi du fichier :',error)
+    
+            }); 
+        } else {
+            alert("le formulaire doit etre complet")
+        }
             
     })
 }
 
-// gestion validation du Form submit
 
 
 
