@@ -142,6 +142,7 @@ li:hover {
 
 .gallery img {
 	width: 100%;
+	height: 100%;
 
 }
 #contact, 
@@ -426,8 +427,17 @@ a {
 	line-height: 20px;
   }
 
-  #modal input{
+  #modal input,
+  #modal select{
 	margin-bottom: 30px;
+	padding-left: 10px;
+  }
+
+
+
+  #modal input:invalid,
+  #modal select:invalid {
+	border: 2px dashed red;
   }
 
   .uploadBox {
