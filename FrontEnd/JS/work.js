@@ -421,8 +421,8 @@ function createModal2() {
     categoryInput.required = true;
     modalForm.appendChild(categoryInput)
 
-    const optionElement = document.createElement('option')
-    categoryInput.appendChild(optionElement)
+    const optionElement = document.createElement('option');
+    categoryInput.appendChild(optionElement);
     optioncategory ()
 
     // creer footer modal2
@@ -475,7 +475,7 @@ function previewImg(imageInput, imageDivBox, iconDivBox, imageLabel, imageP) {
         imageLabel.remove();
         imageP.remove()
     } else{
-        alert("ATTENTION : la taille de la photo selectionner est > 4Mo")
+        alert("ATTENTION : la taille de la photo selectionnée est > 4Mo")
     }
 });   
 }
@@ -531,7 +531,7 @@ function submitPhoto(btnSubmit, imageInput, titleInput, categoryInput) {
     
             }); 
         } else {
-            alert("le formulaire doit etre complet")
+            alert("Attention : Veuillez remplir le formulaire avant de le soumettre")
         }
             
     })
