@@ -176,7 +176,7 @@ navLog.addEventListener('click', function() {
 const btnEdit = document.querySelector('.btn-edit');
 const overlay = document.querySelector('.modal-overlay')
 const modal = document.getElementById('modal')
-const close1 = document.getElementById('')
+
 
 
 // fermeture du modal en cliquant sur l'overlay
@@ -514,14 +514,13 @@ function submitPhoto(btnSubmit, imageInput, titleInput, categoryInput) {
             .then((response)=>{
                 if (!response.ok) {
                     throw new Error('Erreur de réseau : ' + response.status + ' ' + response.statusText);
-                }
-                return response.json();
+                } return response.json();
             })
             .then((data)=>{
                 if (data.error){
                     console.error("Erreur :", data.error);
                 } else {
-                    console.log("Photo ajoutée avec succès :", data);
+                    alert("Photo ajoutée avec succès :", data);
                     createModal2()
                     displayWork()
                 }
@@ -533,8 +532,7 @@ function submitPhoto(btnSubmit, imageInput, titleInput, categoryInput) {
         } else {
             alert("Attention : Veuillez remplir le formulaire avant de le soumettre")
         }
-            
-    })
+    })   
 }
 
 

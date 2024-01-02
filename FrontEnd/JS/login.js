@@ -67,7 +67,8 @@ requestToken ()
 
 // validation de l'email entrer par le user
 function verifierEmail (balise) {
-    let emailRegExp = new RegExp ("[a-z0-9._-]+ @[a-z0-9._-]+ \.[a-z0-9._-]+")
+    // let emailRegExp = new RegExp ("[a-z0-9._-]+ @[a-z0-9._-]+ \.[a-z0-9._-]+")
+    let emailRegExp = new RegExp ("/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/gm")
     let result = emailRegExp.test(balise.value)
     console.log(result)
     if (result == false) {

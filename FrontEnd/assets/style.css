@@ -329,13 +329,9 @@ a {
 	position: absolute;
 	overflow: auto;
 	width: 630px;
-	/* max-width: 630px; */
 	height: 670px;
-	/* max-height: 670px; */
 	top: 600px;
-	/* top: 80%; */
 	left: 405px;
-	/* left: 40%; */
 	padding: 10px;
 	border-radius: 10px;
 	background: #fff;
